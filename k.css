@@ -1,0 +1,74 @@
+
+.form .top{
+    display: flex;
+    flex-direction: row;
+	border:2px solid   #0080008f;
+	width: 310px;
+	border-radius: 3px;
+	margin-top: 5px;
+}
+.form .top .name_age{
+	margin-right: 10px;
+    margin: 3px;
+    display: flex;
+    justify-content: center;
+    width: 150px;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #17c117b0;
+    height: 45px;
+
+}
+.form .top .name_age .name_more{
+    display: flex;
+    flex-direction: row;
+    cursor:pointer
+}
+.form .top .name_age .name_more .arr{
+width:0;
+height:0;
+overflow:hidden;
+border:5px solid transparent;
+margin-top: 19px;
+margin-left: 5px;
+border-bottom-color:white;//top就是倒三角，bottom就是上三角，left,right类似
+border-bottom-width: 0px;
+}
+
+.form .top .list{
+	display: flex;      
+    flex-direction: column;
+}
+.form .top .list1{
+	display: flex;      
+    flex-direction: column;
+}
+
+.form .top .list1 .item{
+	background-color: #8a85853b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    margin-left: 3px;
+    height: 40px;
+    margin-bottom: 3px;
+
+}
+.form .top .list1 .item .item_name_age{
+	padding-right: 20px;
+}
+.www{
+	width:0;
+height:0;
+overflow:hidden;
+border:5px solid transparent;
+margin-top: 19px;
+margin-left: 5px;
+border-top-color:white;//top就是倒三角，bottom就是上三角，left,right类似
+border-bottom-width: 0px;
+ margin-top: 25px;
+}

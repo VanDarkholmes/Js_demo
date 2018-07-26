@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="k.css">
+</head>
+<body>
+	<div onclick="focus()"><span style="margin-right:10px">Search</span><input type="text" id="context" oninput="change()" ></div>
+    <div id="form" class="form">
+    	<div id="top" class="top">
+        <div id="list" class="list">
+         <div id="name" class="name_age" onclick="name()">
+         	<div class="name_more" id="name_font"><p>Name</p><p class="arr" id="name_arr"></p></div> 
+         </div>
+
+       <div id="right" class="list1">
+
+      </div>
+       </div>
+       <div id="list2" class="list1">   		
+         <div id="age" class="name_age" style="margin-left: 0px;" onclick="age()">
+         	<div class="name_more" id="age_font">
+         		<p>Age</p><p class="arr" id="age_arr"></p>
+         	</div>
+         </div>
+           <div id="left" class="list1">
+         </div>
+
+
+       </div> 
+    	</div>
+    </div>
+
+  <script type="text/javascript">
+        var flag=2;
+        var flag2=2;
+        var age_flag = 2;
+        var name_flag=2;
+  		var my =[{
+           id:0,
+           name:"Lebron James",
+   		   age:33
+  		},
+  		{
+  			id:1,
+  			name:"James Harden",
+  			age:28
+  		},
+  		{
+  			id:2,
+  			name:"Zhou Q",
+  			age:23
+  		},
+  		{
+  			id:3,
+  			name:"Kobe Byrant",
+  			age:38
+  		}
+  		]
+      
+   const render = data => `
+            <div ">
+            ${data.map(item => 
+                `<div class="item">
+		    	<div class="item_name_age"><span style="font-size:16px">${item.name}</span></div>
+		 </div>
+          ` ).join('')}
+            </div>`
+    const render2 = data => `
+            <div ">
+            ${data.map(item => 
+                `<div class="item" style="margin-left:0px">
+		    	<div class="item_name_age"><span style="font-size:16px">${item.age}</span></div>
+		 </div>
+          ` ).join('')}
+            </div>`
+   let container = document.getElementById("right"); //获得容器节点
+   container.innerHTML =  render(my);
+  
+   let container2 = document.getElementById("left"); //获得容器节点
+   container2.innerHTML =  render2(my);
+     
+
+
+    function change(){
+    	
+    	var k = new Array();
+  		var text = document.getElementById("context").value;
+  		
+
+        if(text==""){
+        	  fresh(my);
+			}
+			else if(isNaN(text)){//字母的情况
+  				for(var i=0;i<my.length;i++){
+  					   var name = my[i].name.toUpperCase();
+  					   text = text.toUpperCase();
+  					   var flag = name.match(text);
+  					   if(flag){
+  			   		   k.push(my[i]);
+  					}
+  		      	}
+  	   		}else{
+                for(var i=0;i<my.length;i++){
+  					   var age = my[i].age.toString();
+                       text = text.toString();
+  					   var flag = age.match(text);
+  					   if(flag){
+  			   		   k.push(my[i]);
+  					}
+  	   				}
+  	   			}
+  	    const render = data => `
+            <div ">
+            ${data.map(item => 
+                `<div class="item">
+		    	<div class="item_name_age"><span style="font-size:16px">${item.name}</span></div>
+		 </div>
+          ` ).join('')}
+            </div>`
+        let container = document.getElementById("right"); //获得容器节点
+        container.innerHTML =  render(k);
+
+         const render2 = data => `
+            <div ">
+            ${data.map(item => 
+                `<div class="item" style="margin-left:0px">
+		    	<div class="item_name_age"><span style="font-size:16px">${item.age}</span></div>
+		 </div>
+          ` ).join('')}
+            </div>`
+            let container2 = document.getElementById("left"); //获得容器节点
+   			container2.innerHTML =  render2(k);
+        k = [];
+    }
+
+
+
+
+
+    function age(){
+    	document.getElementById("age_font").style.opacity=1;
+    	document.getElementById("name_font").style.opacity=0.5;
+    	age_flag+=1
+    	var $test = document.getElementById("age_arr");
+		var test_class_name = $test.getAttribute("class");
+
+	 if(age_flag%2==1){
+       	test_class_name = test_class_name.replace("arr","www");
+		$test.setAttribute("class",test_class_name);
+		}else{
+		test_class_name = test_class_name.replace("www","arr");
+		$test.setAttribute("class",test_class_name);
+		}
+
+
+ 		var r;
+ 		var k = new Array();
+ 		if(flag%2==0){
+ 		for(var i=0;i<my.length-1;i++){
+ 			
+ 			for(var j=i+1;j<=my.length-1;j++){
+ 				if(my[i].age<my[j].age){
+ 					r = my[i];
+ 					my[i] = my[j];
+ 					my[j] = r;
+ 				}
+ 			}
+ 			
+ 		}
+ 		flag+=1
+ 	}else{
+ 		for(var i=0;i<my.length-1;i++){
+ 			
+ 			for(var j=i+1;j<=my.length-1;j++){
+ 				if(my[i].age>my[j].age){
+ 					r = my[i];
+ 					my[i] = my[j];
+ 					my[j] = r;
+ 				}
+ 			}
+ 			
+ 		}
+ 			flag+=1
+ 	}
+ 		k =my;
+ 		
+ 		fresh(k);
+    }
+
+
+
+    function fresh(s){
+
+    	const render = data => `
+            <div ">
+            ${data.map(item => 
+                `<div class="item">
+		    	<div class="item_name_age"><span style="font-size:16px">${item.name}</span></div>
+		 </div>
+          ` ).join('')}
+            </div>`
+    const render2 = data => `
+            <div ">
+            ${data.map(item => 
+                `<div class="item" style="margin-left:0px">
+		    	<div class="item_name_age"><span style="font-size:16px">${item.age}</span></div>
+		 </div>
+          ` ).join('')}
+            </div>`
+   let container = document.getElementById("right"); //获得容器节点
+   container.innerHTML =  render(s);
+  
+   let container2 = document.getElementById("left"); //获得容器节点
+   container2.innerHTML =  render2(s);
+    }
+
+
+
+
+    function name(){
+ 		document.getElementById("age_font").style.opacity=0.5;
+ 		document.getElementById("name_font").style.opacity=1;
+
+        var $test = document.getElementById("name_arr");
+		var test_class_name = $test.getAttribute("class");
+        name_flag+=1;
+	 if(name_flag%2==1){
+       	test_class_name = test_class_name.replace("arr","www");
+		$test.setAttribute("class",test_class_name);
+		}else{
+		test_class_name = test_class_name.replace("www","arr");
+		$test.setAttribute("class",test_class_name);
+		}
+
+      var r;
+ 		var o = new Array();
+ 		if(flag2%2==0){
+ 		for(var i=0;i<my.length-1;i++){
+ 			
+ 			for(var j=i+1;j<=my.length-1;j++){
+ 				if(my[i].name.substring(0,1)<my[j].name.substring(0,1)){
+ 					r = my[i];
+ 					my[i] = my[j];
+ 					my[j] = r;
+ 				}
+ 			}
+ 			
+ 		}
+ 		flag2+=1
+ 	}else{
+ 		for(var i=0;i<my.length-1;i++){
+ 			
+ 			for(var j=i+1;j<=my.length-1;j++){
+ 				if(my[i].name.substring(0,1)>my[j].name.substring(0,1)){
+ 					r = my[i];
+ 					my[i] = my[j];
+ 					my[j] = r;
+ 				}
+ 			}
+ 			
+ 		}
+ 			flag2+=1
+ 	}
+ 		o =my;
+ 		fresh(o);
+    }
+    
+  </script>  
+</body>
+</html>
